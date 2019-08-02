@@ -1,0 +1,49 @@
+.header
+  .header__image
+  .header__left_content
+  .header__title
+    %h1 ざぶとん
+  .header__right_content
+    - if user_signed_in?
+      = link_to "users/#{current_user.id}",class: "header__right_content__my_page" do
+        - if current_user.image.present?
+          = image_tag current_user.image.url, class: "header__right_content__my_page--image"
+        - else
+          =fa_icon 'user 5x'
+    - else
+      = link_to new_user_session_url,class: "header__right_content__log_in" do
+        =fa_icon 'user 5x'
+    = link_to "",class:"header__right_content__ranking" do
+      = fa_icon 'flag 5x'
+.main
+  .main__back_text
+    %hi 笑
+  %span.main--title 御題目
+  .main__themes
+    - @themes.each do |theme|
+      = link_to "themes/#{theme.id}/answers", class: "main__themes__theme" do
+        - if theme.image.present?
+          = image_tag theme.image.url, class:"main__themes__theme__image"
+        - else
+          %img.main__themes__theme__image{src: "assets/top/sample_img.gif", alt: "サンプル画像"}/
+        .main__themes__theme__text
+          %h2.main__themes__theme__text--title
+            - if theme.text.present?
+              = simple_format(theme.text)
+            - else
+              No Title
+          - theme.answers.order("created_at DESC").limit(2).each do |answer|
+            .main__themes__theme__text--best_answer
+              - if answer.present?
+                = answer.text
+- if user_signed_in?
+  .footer_btn
+    = fa_icon 'plus-square 4x',id:"btn", class: "footer_btn__icon"
+    .footer_btn__form.off#form
+      = form_for Theme.new do |f|
+        = f.text_area :text, class: "footer_btn__form__contents footer_btn__form__contents--text",maxlength: "40", placeholder:"お題を書いて下さい(40字以内)"
+        = f.label :image, for: "file_field" , class: "footer_btn__form__contents footer_btn__form__contents--image" do
+          %p 写真を選んでください
+          = f.file_field :image, id: "file_field",class: "footer_btn__form__contents footer_btn__form__contents--image-none"
+        = f.submit "送信", class: "footer_btn__form__contents footer_btn__form__contents--submit"
+    %p.footer_btn--text 御題目を投稿する

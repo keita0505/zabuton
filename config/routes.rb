@@ -1,3 +1,8 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  devise_for :users
+  root "themes#index"
+  resources :users, only: [:show, :edit, :update]
+  resources :themes, only: [:index, :create] do
+    resources :answers, only: [:index, :create]
+  end
 end

@@ -1,0 +1,38 @@
+.common_design
+  .common_design__back
+  .common_design__text
+    %p 笑
+.sign_up
+  %h2.sign_up__title Sign up
+  = form_for(resource, as: resource_name, url: registration_path(resource_name), class:"sign_up__form") do |f|
+    = render "devise/shared/error_messages", resource: resource
+    .sign_up__form__field.sign_up__form__field-name
+      = f.label :name
+      %br/
+      = f.text_field :name, autofocus: true, maxlength: "7"
+    .sign_up__form__field.sign_up__form__field-image
+      = f.label :image
+      %label.form-image{for:"user_image"}
+        %p 写真を選択してください
+      %br/
+      = f.file_field :image
+    .sign_up__form__field.sign_up__form__field-text
+      = f.label :text
+      %br/
+      = f.text_area :text,maxlength: "40"
+    .sign_up__form__field.sign_up__form__field-mail
+      = f.label :email
+      %br/
+      = f.email_field :email, autocomplete: "email"
+    .sign_up__form__field.sign_up__form__field-password
+      = f.label :password
+      %i (英数字8文字以上)
+      %br/
+      = f.password_field :password, autocomplete: "new-password"
+    .sign_up__form__field.sign_up__form__field--password--conf
+      = f.label :password_confirmation
+      %br/
+      = f.password_field :password_confirmation, autocomplete: "new-password"
+    .sign_up__form__actions-submit
+      = f.submit "Sign up"
+= render "devise/shared/links"

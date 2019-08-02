@@ -1,0 +1,13 @@
+$(function(){
+  $('#btn').on('click',function(){
+  if($('#form').hasClass('off')){
+    $('#form').removeClass('off');
+    $('#form').animate({'marginLeft':'470px'},300).addClass('on');
+    $('#btn').css({transform:'rotate(-405deg)'});
+  }else{
+    $('#form').addClass('off');
+    $('#form').animate({'marginLeft':'0px'},300);
+    $('#btn').css({transform:'rotate(0deg)'});
+  }
+  });
+})

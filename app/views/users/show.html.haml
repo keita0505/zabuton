@@ -1,0 +1,51 @@
+.my_page
+  .my_page__header
+    .my_page__header__title
+      = @user.name
+    .my_page__header__btns
+      = link_to edit_user_path, class: "my_page__header__btns--edit" do
+        =fa_icon 'edit 3x'
+      = link_to destroy_user_session_path,method: :delete, class: "my_page__header__btns--log_out" do
+        = fa_icon 'trash 3x'
+  .my_page__main
+    .my_page__main__back_text
+      %p ざぶとん
+    .my_page__main__own_data
+      .my_page__main__own_data__upper
+        - if @user.image.present?
+          = image_tag @user.image.url, class: 'my_page__main__own_data__upper__image'
+        - else
+          %img.my_page__main__own_data__upper__image{src: '/assets/top/no_image.jpg', alt: "No User"}/
+        .my_page__main__own_data__upper__right
+          .my_page__main__own_data__upper__right__name
+            = @user.name
+          -# .my_page__main__own_data__upper__right__rank
+          -# .my_page__main__own_data__upper__right__point
+      .my_page__main__own_data__text
+        - if @user.text.present?
+          = simple_format(@user.text)
+        - else
+          %p No text
+    .my_page__main__themes
+      - if @themes.present? 
+        - @themes.each do |theme|
+          = link_to "/themes/#{theme.id}/answers", class:"my_page__main__themes__theme" do
+            - if theme.image.present?
+              = image_tag theme.image.url, class:"my_page__main__themes__theme--image"
+            - else
+              %img.my_page__main__themes__theme--image{src: "/assets/top/sample_img.gif", alt: "サンプル画像"}/
+            .my_page__main__themes__theme__text
+              .my_page__main__themes__theme__text--title
+                - if theme.text.present?
+                  = simple_format(theme.text)
+                - else
+                  No Title
+              .my_page__main__themes__theme__text--answers
+                - theme.answers.order("created_at DESC").limit(2).each do |answer|
+                  - if answer.present?
+                    .my_page__main__themes__theme__text--answers--answer
+                      = answer.text
+    -# .my_page__main__answers
+  = link_to root_path, id: "jump_index",class:"my_page__top_page" do
+    = fa_icon "map 2x",class:"my_page__top_page--icon"
+    %lavel{for: "jump_index",class:"my_page__top_page--text"}TOP PAGE

@@ -1,0 +1,27 @@
+.answer
+  .answer__side_bar
+    .answer__side_bar__image
+      - if @theme.image.present?
+        = image_tag @theme.image.url, class: "answer__side_bar__image"
+      - else
+        %img.answer__side_bar__image{src: "/assets/top/sample_img.gif", alt: "サンプル画像"}/
+    
+  .answer__main
+    .answer__main__text
+      .answer__main__text--title
+        = simple_format(@theme.text)
+      =link_to root_path, class:"answer__main__text--back" do
+        %p お題目一覧に戻る
+    .answer__main__answers
+      - @answers.each do |answer|
+        .answer__main__answers__an_answer
+          .answer__main__answers__an_answer--text
+            = answer.text
+          -# .answer__main__answers__an_answer--btn
+          .answer__main__answers__an_answer--user_name
+            = answer.user.name
+    .answer__main__form
+      = form_for [@theme, @answer] do |f|
+        = f.text_field :text, class: "answer__main__form--text",placeholder: "回答を入力してください"
+        = f.submit "回答", class:"answer__main__form--submit"
+      

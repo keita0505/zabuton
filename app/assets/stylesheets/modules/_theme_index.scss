@@ -1,0 +1,271 @@
+body{
+  font-family: “HGP行書体”, “ＭＳ Ｐ明朝”, “MS PMincho”, serif;
+}
+.header{
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  &__image{
+    position: absolute;
+    
+    z-index: -1;
+    width:100%;
+    height: 100%;
+    background:repeating-linear-gradient(90deg, #FF9933 0, #FF9933 20px, black 20px,black 40px, green 40px, green 60px);
+  }
+  &__title{
+    color: black;
+    font-size: 60px;
+    margin-left: 110px;
+    padding: 0 20px;
+    letter-spacing: 10px;
+    background-color: rgba(255,255,240,0.9);
+    border-style: solid none;
+    border-color: brown;
+    border-width: 10px;
+  }
+  &__right_content{
+    position: relative;
+    margin-left: auto;
+    margin-right: 30px;
+    display: flex;
+    font-weight: 900;
+    &__my_page{
+      color:ivory;
+      transition: .3s;
+      &:hover{
+        color: #CCCCFF;
+      }
+      &--image{
+        margin-top: 3px;
+        width: 70px;
+        height: 70px;
+        border: #fff solid 5px;
+        border-radius: 38px;
+        &:hover{
+          border-color: #CCCCFF;
+        }
+      }
+    }
+    &__log_in{
+      color:ivory;
+      transition: .3s;
+      &:hover{
+        color: #CCCCFF;
+      }
+    }
+    &__ranking{
+      margin-left:30px;
+      transition: .3s;
+      color:ivory;
+      &:hover{
+        color: #CCCCFF;
+      }
+    }
+  }
+}
+.main{
+  position: fixed;
+  z-index: -2;
+  width: 100vw;
+  height: calc(100vh - 150px);
+  margin-top: 150px;
+  background:
+  linear-gradient(135deg, ivory 21px, #708090 22px, #708090 24px, transparent 24px, transparent 67px, #708090 67px, #708090 69px, transparent 69px),
+  linear-gradient(225deg, ivory 21px, #708090 22px, #708090 24px, transparent 24px, transparent 67px, #708090 67px, #708090 69px, transparent 69px)0 64px;
+  background-color:ivory;
+  background-size: 64px 128px;
+  // background: linear-gradient(-45deg, rgba(246, 255, 0, .8), rgba(255, 0, 161, .8)),
+  // url(images/bg-cherrybrossam.jpg);
+  // background-size: cover;
+  &__back_text{
+    font-size: 500px;
+    position: absolute;
+    left: 0;
+    top: -80px;
+    z-index: -1;
+    color:  #FFA36C;
+    animation: gradationTest 30s infinite;
+    opacity: 0.6;
+    transform: rotate(-10deg);
+    -moz-transform: rotate(-10deg);
+    -webkit-transform: rotate(-10deg);
+  }
+  @keyframes gradationTest {
+    0% { color:  #FFA36C; }
+    20% { color: #FFF66C; }
+    40% { color: #FFF66C; }
+    60% { color: #33FF99; }
+    80% { color : #6CB8FF; }
+    100% { color: #FFA36C; }
+  }
+  &--title{
+    position: absolute;
+    z-index: 3;
+    display: inline-block;
+    top: 17px;
+    right: 50vw;
+    padding: 0 9px;
+    line-height: 1.1;
+    letter-spacing: 3px;
+    font-size: 30px;
+    background: rgba(255,255,240,0.8);
+    color: black;
+    font-weight: bold;
+    border-style: solid none;
+    border-color: brown;
+    border-width: 3px;
+  }
+  &__themes{
+    width: 60vw;
+    height: calc(100vh - 150px);
+    float: right;
+    position: relative;
+    margin:30px;
+    padding: 20px 0;
+    overflow: scroll;
+    background-color: ivory;
+    box-shadow: 10px 10px 10px rgba(0,0,0,0.4);
+    border:solid 1px black;
+    border-radius: 1em;
+    &__theme{
+      margin: 20px 20px ;
+      height:200px;
+      width: calc(100%- 40px);
+      display: flex;
+      text-decoration: none;
+      &:hover &__text--title{
+        color:purple;
+      }
+      &__image{
+        width: 200px;
+        height:200px;
+        border-radius: 5px;
+      }
+      &__text{
+        width:calc(100% - 220px);
+        margin-left: 20px;
+        padding:20px 0;
+        font-size: 20px;
+        color: black;
+        line-height: 1.1;
+        transition: 0.3;
+        &--title{
+          font-size: 30px;
+        }
+        &--best_answer{
+          margin: 10px 0 0 20px;
+          width: calc(100% - 40px);
+          word-wrap:break-word;
+        }
+      }
+    }
+  }
+}
+.footer_btn{
+  position: fixed;
+  z-index: 2;
+  top: 170px;
+  left:20px;
+  width:35vw;
+  height:100vh;
+  display: flex;
+  &--text{
+    opacity: 0;
+    -webkit-transition: 0.3s ease-in-out;
+    -moz-transition: 0.3s ease-in-out;
+    -o-transition: 0.3s ease-in-out;
+    transition: 0.3s ease-in-out;
+    position: relative;
+    background: #fff0c6;
+    border-radius: 30px;
+    margin: 30px 0 0 60px;
+    padding: 0 20px;
+    font-size: 18px;
+    color: black;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    &:before{
+      font-family: FontAwesome;
+      content: "\f111";
+      position: absolute;
+      font-size: 20px;
+      left: -60px;
+      bottom: 20px;
+      color: #fff0c6;
+    }
+    &:after{
+      font-family: FontAwesome;
+      content: "\f111";
+      position: absolute;
+      font-size: 30px;
+      left: -36px;
+      bottom: 10px;
+      color: #fff0c6;
+    }
+  }
+  &:hover &--text{
+    opacity: 1;
+  }
+  
+  &__icon{ 
+    width:50px;
+    height: 50px;
+    color: black;
+    transition: transform 1s;
+    transform: rotate(0deg);
+  }
+  &__form{
+    position: fixed;
+    z-index:3;
+    left:-450px;
+    top: 280px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    width:400px;
+    height:350px;
+    padding: 20px 20px;
+    border:solid 2px orange;
+    border-radius: 0.5em;
+    background-color: ivory;
+    &__contents{
+      width: 300px;
+      &--text{
+        height: 200px;
+        border-radius: 0.5em;
+        padding: 0 5px;
+      }
+      &--image{
+        display: block;
+        width: 310px;
+        height: 50px;
+        line-height: 50px;
+        border:solid 1px black;
+        border-radius: 0.25em;
+        margin: 20px 0;
+      }
+      &--image-none{
+        display: none;
+      }
+      &--submit{
+        display: block;
+        height: 60px;
+        font-size: 30px;
+        width: 310px;
+        background-color: #333;
+        color: #fff;
+        letter-spacing: 20px;
+        border-radius: 0.25em;
+        &:hover{
+          
+        }
+      }
+    }
+  }
+}
